@@ -10,7 +10,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int columnCount = 36;
+	int columnCount = 12;
 	JToggleButton button[][];
 	boolean maryHad[][];
 	JPanel panel=new JPanel();
@@ -154,14 +154,15 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 			try{
 				for(int y =0; y<columnCount;y++) {
 					for(int x=0; x<button.length;x++) {
+						soundClip[x].stop();
 						if(button[y][x].isSelected())
 						{
-							System.out.println("Selected y:"+y+" x:"+x);
-							soundClip[x].stop();
+							
+							
 							soundClip[x].play();
 						}
 					}
-				Thread.sleep(300);
+				Thread.sleep(700);
 				}
 				
 			}catch(InterruptedException e){}
@@ -177,7 +178,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	}
 	
 	public void marySong() {
-		columnCount = 29;
+		columnCount = 32;
 		initialInstantiator();
 		//melody
 		button[0][30].setSelected(true);
