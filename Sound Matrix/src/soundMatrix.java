@@ -102,7 +102,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		menuBar.add(menu);
 		menuBar.add(minusOne);
 		menuBar.add(plusOne);
-		panel.setBackground(Color.black);
+		panel.setBackground(Color.BLACK);
 		frame.add(menuBar, BorderLayout.NORTH);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setSize(1000,1000);
@@ -142,13 +142,14 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		do{
 			try{
 				for(int y =0; y<columnCount;y++) {
-					for(int x=0; x<musicNotes.length;x++) {
+					for(int x=0; x<button.length;x++) {
 						if(button[y][x].isSelected())
 						{
+							soundClip[x].stop();
 							soundClip[x].play();
 						}
 					}
-				Thread.sleep(500);
+				Thread.sleep(300);
 				}
 				
 			}catch(InterruptedException e){}
@@ -165,72 +166,43 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	
 	public void marySong() {
 		columnCount = 29;
-		maryHad = new boolean[columnCount][36];
-		for(int i = 0;i<columnCount;i++) {
-			for(int j=0; j<36;j++) {
-				maryHad[i][j]= false; 
-			}
-		}
-		maryHad[0][18]=true;
-		maryHad[1][16]=true;
-		maryHad[2][14]=true;
-		maryHad[3][16]=true;
-		maryHad[4][18]=true;
-		maryHad[5][18]=true;
-		maryHad[6][18]=true;
-		maryHad[8][16]=true;
-		maryHad[9][16]=true;
-		maryHad[10][16]=true;
-		maryHad[12][16]=true;
-		maryHad[13][18]=true;
-		maryHad[14][18]=true;
-		maryHad[16][18]=true;
-		maryHad[17][16]=true;
-		maryHad[18][14]=true;
-		maryHad[19][16]=true;
-		maryHad[20][18]=true;
-		maryHad[21][18]=true;
-		maryHad[22][18]=true;
-		maryHad[23][18]=true;
-		maryHad[24][16]=true;
-		maryHad[25][16]=true;
-		maryHad[26][18]=true;
-		maryHad[27][16]=true;
-		maryHad[28][14]=true;
-		
-		
-		for(int y=0;y<36;y++)
-			for(int x=0;x<columnCount;x++)
-			{
-				button[x][y]=new JToggleButton();
-				button[x][y].setBackground(Color.DARK_GRAY);
-				panel.add(button[x][y]);
-			}
+		goddamnit();
+		button[0][18].setSelected(true);
+		button[1][16].setSelected(true);
+		button[2][14].setSelected(true);
+		button[3][16].setSelected(true);
+		button[4][18].setSelected(true);
+		button[5][18].setSelected(true);
+		button[6][18].setSelected(true);
+		button[8][16].setSelected(true);
+		button[9][16].setSelected(true);
+		button[10][16].setSelected(true);
+		button[12][16].setSelected(true);
+		button[13][18].setSelected(true);
+		button[14][18].setSelected(true);
+		button[16][18].setSelected(true);
+		button[17][16].setSelected(true);
+		button[18][14].setSelected(true);
+		button[19][16].setSelected(true);
+		button[20][18].setSelected(true);
+		button[21][18].setSelected(true);
+		button[22][18].setSelected(true);
+		button[23][18].setSelected(true);
+		button[24][16].setSelected(true);
+		button[25][16].setSelected(true);
+		button[26][18].setSelected(true);
+		button[27][16].setSelected(true);
+		button[28][14].setSelected(true);
 	}
 	
 	
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == item1) {
+			
 			panel.removeAll();
-			for(int i = 0;i<button.length;i++) {
-				for(int j=0; j<button[0].length;j++) {
-					button[i][j].setSelected(false);
-					System.out.print(button[i][j].isSelected() + "\t");
-				}
-				System.out.println();
-			}
 			marySong();
 			goddamnit();
-			for(int i = 0;i<button.length;i++) {
-				for(int j=0; j<button[0].length;j++) {
-					if(maryHad[i][j]) {
-						button[i][j].setSelected(true);
-						
-					}
-					System.out.print(button[i][j].isSelected() + "\t");
-				}System.out.println();
-			}
 			
 			frame.revalidate();
 		}else if (e.getSource() == item2) {
