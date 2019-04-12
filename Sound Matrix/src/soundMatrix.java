@@ -85,7 +85,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		musicNotes[34] = URLmaker("ASharp5");
 		musicNotes[35] = URLmaker("B5");
 		
-		for(int x =musicNotes.length-1; x>=0; x--) {
+		for(int x =0; x<musicNotes.length; x++) {
 			soundClip[x] = JApplet.newAudioClip(musicNotes[x]);
 		}
 		
