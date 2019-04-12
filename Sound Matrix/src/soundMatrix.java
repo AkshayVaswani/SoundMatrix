@@ -85,13 +85,13 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		musicNotes[34] = URLmaker("ASharp5");
 		musicNotes[35] = URLmaker("B5");
 		
-		for(int x =0; x<musicNotes.length; x++) {
+		for(int x =musicNotes.length-1; x>=0; x--) {
 			soundClip[x] = JApplet.newAudioClip(musicNotes[x]);
 		}
 		
 		
 		
-		goddamnit();
+		initialInstantiator();
 		
 		menu.add(item1);
 		menu.add(item2);
@@ -125,10 +125,11 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		}
 		return urls;
 	}
-	public void goddamnit() {
+	public void initialInstantiator() {
 		frame.setSize((columnCount*40),1000);
-		panel = new JPanel();
+		frame.setBackground(Color.black);
 		frame.remove(panel);
+		panel = new JPanel();
 		button = new JToggleButton[columnCount][36];
 		panel.setLayout(new GridLayout(36, columnCount, 5, 5));
 		for(int y=0;y<36;y++)
@@ -139,8 +140,12 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 			panel.add(button[x][y]);
 		}
 		frame.add(panel, BorderLayout.CENTER);
-		frame.revalidate();
+		panel.setBackground(Color.BLACK);
 		frame.setVisible(true);
+		frame.revalidate();
+	}
+	public void recallableInstantiator() {
+		
 	}
 
 	public void run(){
@@ -173,7 +178,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	
 	public void marySong() {
 		columnCount = 29;
-		goddamnit();
+		initialInstantiator();
 		button[0][18].setSelected(true);
 		button[1][16].setSelected(true);
 		button[2][14].setSelected(true);
@@ -206,13 +211,11 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == item1) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			panel.removeAll();
+			
 			marySong();
+			
+			System.out.println(columnCount);
+			
 			
 		}else if (e.getSource() == item2) {
 			System.out.println("TEST");
@@ -222,14 +225,15 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 			
 			panel.removeAll();
 			columnCount++;
+			initialInstantiator();
 			
 		}else if(e.getSource() == minusOne) {
 			
 			panel.removeAll();
 			columnCount--;
-			
+			initialInstantiator();
 		}
-		goddamnit();
+		
 		frame.revalidate();
 		
 	}
