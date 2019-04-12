@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
 import java.net.*;
+import java.security.KeyStore.TrustedCertificateEntry;
 public class soundMatrix extends JFrame implements Runnable, ActionListener
 {
 	/**
@@ -23,6 +24,8 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	JButton minusOne;
 	
 	URL[] musicNotes;
+	
+	Thread timing;
 
 	AudioClip soundClip[]=new AudioClip[36];
 	boolean notStopped=true;
@@ -108,7 +111,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		frame.setSize(1000,1000);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Thread timing = new Thread(this);
+		timing = new Thread(this);
 		timing.start();
 	}
 
@@ -124,6 +127,8 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	}
 	public void goddamnit() {
 		frame.setSize((columnCount*40),1000);
+		panel = new JPanel();
+		frame.remove(panel);
 		button = new JToggleButton[columnCount][36];
 		panel.setLayout(new GridLayout(36, columnCount, 5, 5));
 		for(int y=0;y<36;y++)
@@ -135,6 +140,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		}
 		frame.add(panel, BorderLayout.CENTER);
 		frame.revalidate();
+		frame.setVisible(true);
 	}
 
 	public void run(){
@@ -145,6 +151,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 					for(int x=0; x<button.length;x++) {
 						if(button[y][x].isSelected())
 						{
+							System.out.println("Selected y:"+y+" x:"+x);
 							soundClip[x].stop();
 							soundClip[x].play();
 						}
@@ -199,12 +206,14 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getSource() == item1) {
-			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e1) {
+				e1.printStackTrace();
+			}
 			panel.removeAll();
 			marySong();
-			goddamnit();
 			
-			frame.revalidate();
 		}else if (e.getSource() == item2) {
 			System.out.println("TEST");
 		}else if(e.getSource() == item3) {
