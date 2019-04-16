@@ -10,7 +10,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int columnCount = 12;
+	int columnCount = 36;
 	JToggleButton button[][];
 	boolean maryHad[][];
 	JPanel panel=new JPanel();
@@ -107,9 +107,6 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		menuBar.add(plusOne);
 		panel.setBackground(Color.BLACK);
 		frame.add(menuBar, BorderLayout.NORTH);
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setSize(1000,1000);
-		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		timing = new Thread(this);
 		timing.start();
@@ -126,7 +123,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener
 		return urls;
 	}
 	public void initialInstantiator() {
-		frame.setSize((columnCount*40),1000);
+		frame.setSize((columnCount*28),1000);
 		frame.setBackground(Color.black);
 		frame.remove(panel);
 		panel = new JPanel();
