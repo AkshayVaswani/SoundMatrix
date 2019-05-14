@@ -1,6 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.applet.*;
 import java.net.*;
 import java.security.KeyStore.TrustedCertificateEntry;
@@ -246,13 +253,15 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 	}
 
 
+	
+
 	public void run(){
 		
 		do{
 			try{
-				for(int y =0; y<columnCount;y++) {
-					for(int x=0; x<buttons.length;x++) {
-						soundClip[x].stop();
+				for(int y=0; y<columnCount;y++) {
+					for(int x=0; x<buttons.length-1;x++) {
+						
 						if(buttons[y][x].isSelected())
 						{
 							soundClip[x].stop();
@@ -349,7 +358,87 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		buttons[28][11].setSelected(true);
 		buttons[28][23].setSelected(true);
 		
+		beats.setValue(100);
+		
 	}
+	
+	public void pokemon() {
+		columnCount = 50;
+		initialInstantiator();
+		buttons[0][3].setSelected(true);
+		buttons[0][9].setSelected(true);
+		buttons[0][12].setSelected(true);
+		
+		buttons[1][16].setSelected(true);
+		buttons[2][16].setSelected(true);
+		buttons[3][16].setSelected(true);
+		buttons[4][16].setSelected(true);
+		buttons[5][16].setSelected(true);
+		buttons[7][16].setSelected(true);
+		
+		buttons[8][2].setSelected(true);
+		buttons[8][7].setSelected(true);
+		buttons[8][11].setSelected(true);
+		buttons[8][14].setSelected(true);
+		
+		buttons[9][14].setSelected(true);
+		buttons[10][11].setSelected(true);
+		buttons[11][7].setSelected(true);
+		
+		buttons[13][7].setSelected(true);
+		buttons[14][3].setSelected(true);
+		
+		buttons[15][3].setSelected(true);
+		buttons[15][9].setSelected(true);
+		buttons[15][12].setSelected(true);
+		
+		buttons[16][16].setSelected(true);
+		buttons[18][16].setSelected(true);
+		buttons[19][16].setSelected(true);
+		buttons[20][14].setSelected(true);
+		buttons[21][12].setSelected(true);
+		buttons[22][14].setSelected(true);
+		
+		buttons[24][7].setSelected(true);
+		buttons[24][11].setSelected(true);
+		buttons[24][14].setSelected(true);
+		buttons[26][7].setSelected(true);
+		buttons[28][3].setSelected(true);
+		buttons[29][3].setSelected(true);
+		
+		buttons[31][3].setSelected(true);
+		buttons[31][9].setSelected(true);
+		buttons[31][12].setSelected(true);
+		
+		buttons[33][17].setSelected(true);
+		buttons[34][17].setSelected(true);
+		buttons[35][17].setSelected(true);
+		buttons[36][17].setSelected(true);
+		
+		buttons[39][17].setSelected(true);
+		
+		buttons[40][16].setSelected(true);
+		buttons[40][12].setSelected(true);
+		buttons[40][7].setSelected(true);
+		buttons[40][4].setSelected(true);
+		
+		buttons[41][16].setSelected(true);
+		buttons[42][14].setSelected(true);
+		buttons[43][12].setSelected(true);
+		buttons[47][12].setSelected(true);
+		
+		buttons[48][16].setSelected(true);
+		buttons[48][12].setSelected(true);
+		buttons[48][7].setSelected(true);
+		buttons[48][4].setSelected(true);
+		buttons[48][0].setSelected(true);
+		
+		
+		
+		beats.setValue(200);
+		
+	}
+	
 	
 	public void randomBtn() {
 		resetBtn();
@@ -382,11 +471,11 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 			for(int y = 0; y<userSave[x].length; y++) {
 				if(buttons[x][y].isSelected()) {
 					userSave[x][y]= true;
-					System.out.print("t");
+					
 				}
 				else {
 					userSave[x][y] = false;
-					System.out.print("f");
+					
 				}
 				
 			}
@@ -412,7 +501,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 			System.out.println(columnCount);
 			
 		}
-		else if (e.getSource() == item2) {System.out.println("TEST");}
+		else if (e.getSource() == item2) {pokemon();}
 		else if(e.getSource() == item3) {System.out.println("TEST");}
 		else if(e.getSource() == plusOne) {
 			
