@@ -365,6 +365,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 	public void pokemon() {
 		columnCount = 50;
 		initialInstantiator();
+		//https://musicboxmaniacs.com/explore/melody/pokemon-gotta-catch-them-all_36591/
 		buttons[0][3].setSelected(true);
 		buttons[0][9].setSelected(true);
 		buttons[0][12].setSelected(true);
