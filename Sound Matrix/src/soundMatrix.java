@@ -35,7 +35,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 	boolean userSave[][];
 	JLabel temp[] = new JLabel[36];
 	
-	
+	JScrollPane scrollPane;
 	
 	JScrollBar beats;
 	JLabel bpmLabel;
@@ -65,12 +65,13 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		labels = new JPanel();
 		menu = 	new JMenu("PreLoaded Songs");
 		item1 = new JMenuItem("Song One: Mary Had A Little Lamb"); 
-		item2 = new JMenuItem("Song Two: Despacito");
-		item3 = new JMenuItem("Song Three: Despacito 2");
+		item2 = new JMenuItem("Song Two: Pokemon, Gotta Catch em All!");
+		item3 = new JMenuItem("Song Three: Lucid Dreams");
 		save = new JMenu("Save your song");
 		saveL = new JMenuItem("Save Load");
 		loadL = new JMenuItem("Load the Song");
 		clearL = new JMenuItem("Clear Load");
+		scrollPane = new JScrollPane();
 		plusOne = new JButton("\u2191");
 		plusOne.setOpaque(false);
 		plusOne.setContentAreaFilled(false);
@@ -81,7 +82,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		minusOne.setOpaque(false);
 		minusOne.setContentAreaFilled(false);
 		minusOne.setBorderPainted(false);
-		beats = new JScrollBar(JScrollBar.HORIZONTAL, 60, 0, 30, 200);
+		beats = new JScrollBar(JScrollBar.HORIZONTAL, 60, 0, 30, 400);
 		beats.setBackground(Color.black);
 		beats.setPreferredSize(new Dimension(500, 20));
 		beats.addAdjustmentListener(this);
@@ -98,6 +99,8 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		random.setContentAreaFilled(false);
 		random.setBorderPainted(false);
 		random.setForeground(Color.white);
+		
+		frame.setSize((columnCount*28),1000);
 		
 		userSave = new boolean[columnCount][36];
 		
@@ -158,6 +161,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		
 		frame.add(labels, BorderLayout.WEST);
 		
+	
 		initialInstantiator();
 		menu.setForeground(Color.white);
 		menu.setBackground(Color.black);
@@ -182,8 +186,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		save.add(clearL);
 		clearL.setForeground(Color.white);
 		clearL.setBackground(Color.BLACK);
-	
-	
+		
 			
 			
 		
@@ -213,6 +216,8 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		topPanel.add(menuBar, BorderLayout.NORTH);
 		topPanel.add(menuBar2, BorderLayout.SOUTH);
 		frame.add(topPanel, BorderLayout.NORTH);
+		scrollPane.setViewportView(panel);
+		frame.getContentPane().add(scrollPane);
 		frame.setBackground(Color.black);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		timing = new Thread(this);
@@ -230,9 +235,11 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		return urls;
 	}
 	public void initialInstantiator() {
-		frame.setSize((columnCount*28),1000);
+		
+		//frame.setSize((columnCount*28),1000);
 		frame.setBackground(Color.black);
 		frame.remove(panel);
+		frame.getContentPane().remove(scrollPane);
 		panel = new JPanel();
 		buttons = new JToggleButton[columnCount][36];
 		panel.setLayout(new GridLayout(36, columnCount, 5, 5));
@@ -244,8 +251,11 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 				panel.add(buttons[x][y]);
 			}
 		}
+	
 		
 		frame.add(panel, BorderLayout.CENTER);
+		scrollPane.setViewportView(panel);
+		frame.getContentPane().add(scrollPane);
 		panel.setBackground(Color.BLACK);
 		frame.setVisible(true);
 		frame.revalidate();
@@ -260,8 +270,8 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		do{
 			try{
 				for(int y=0; y<columnCount;y++) {
-					for(int x=0; x<buttons.length-1;x++) {
-						
+					for(int x=0; x<buttons[y].length-1;x++) {
+						//soundClip[x].stop();
 						if(buttons[y][x].isSelected())
 						{
 							soundClip[x].stop();
@@ -363,7 +373,7 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 	}
 	
 	public void pokemon() {
-		columnCount = 50;
+		columnCount = 60;
 		initialInstantiator();
 		//https://musicboxmaniacs.com/explore/melody/pokemon-gotta-catch-them-all_36591/
 		buttons[0][3].setSelected(true);
@@ -434,12 +444,46 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 		buttons[48][4].setSelected(true);
 		buttons[48][0].setSelected(true);
 		
+		buttons[50][16].setSelected(true);
 		
+		buttons[51][14].setSelected(true);
+		buttons[51][2].setSelected(true);
+		buttons[51][7].setSelected(true);
 		
-		beats.setValue(200);
+		buttons[52][14].setSelected(true);
+		buttons[52][19].setSelected(true);
+		
+		buttons[53][12].setSelected(true);
+		
+		buttons[54][17].setSelected(true);
+		buttons[54][12].setSelected(true);
+		buttons[54][11].setSelected(true);
+		buttons[54][9].setSelected(true);
+		buttons[54][4].setSelected(true);
+		
+		beats.setValue(260);
 		
 	}
 	
+	public void lucidDrms() {
+		columnCount = 45;
+		initialInstantiator();
+		
+		buttons[1][31].setSelected(true);
+		buttons[5][26].setSelected(true);
+		buttons[8][31].setSelected(true);
+		buttons[12][30].setSelected(true);
+		buttons[16][26].setSelected(true);
+		buttons[19][30].setSelected(true);
+		buttons[23][28].setSelected(true);
+		buttons[27][24].setSelected(true);
+		buttons[30][28].setSelected(true);
+		buttons[34][28].setSelected(true);
+		buttons[40][27].setSelected(true);
+		
+		beats.setValue(400);
+		
+	}
 	
 	public void randomBtn() {
 		resetBtn();
@@ -495,15 +539,9 @@ public class soundMatrix extends JFrame implements Runnable, ActionListener, Adj
 	}
 	public void actionPerformed(ActionEvent e) {
 		
-		if (e.getSource() == item1) {
-			
-			marySong();
-			
-			System.out.println(columnCount);
-			
-		}
+		if (e.getSource() == item1) {marySong();}
 		else if (e.getSource() == item2) {pokemon();}
-		else if(e.getSource() == item3) {System.out.println("TEST");}
+		else if(e.getSource() == item3) {lucidDrms();}
 		else if(e.getSource() == plusOne) {
 			
 			panel.removeAll();
